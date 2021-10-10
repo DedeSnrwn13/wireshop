@@ -46,6 +46,11 @@
                                     @error('image') 
                                         <span class="invalid-feedback">{{ $message }}</span> 
                                     @enderror
+
+                                    @if ($image)
+                                        Photo Preview: 
+                                        <img src="{{ $image->temporaryUrl() }}" alt="" height="200">
+                                    @endif
                                 </div>
                             </div>
                         </div>
