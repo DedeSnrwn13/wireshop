@@ -1,8 +1,16 @@
 <div class="container">
+    @if ($formVisible)
+        @livewire('product.create')
+    @endif
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Products</div>
+                <div class="card-header">
+                    Products
+
+                    <button wire:click="$toggle('formVisible')" class="btn btn-sm btn-primary">Create</button>
+                </div>
 
                 <div class="card-body">
                     <div class="row">
@@ -22,7 +30,7 @@
 
                     <hr>
 
-                    <table class="table mt-4">
+                    <table class="table mt-3">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
