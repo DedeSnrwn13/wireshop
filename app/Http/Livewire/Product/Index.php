@@ -12,10 +12,12 @@ class Index extends Component
     
     protected $paginationTheme = 'bootstrap';
 
+    public $paginate = 10;
+
     public function render()
     {
         return view('livewire.product.index', [
-            'products' => Product::latest()->paginate(10)
+            'products' => Product::latest()->paginate($this->paginate)
         ]);
     }
 }

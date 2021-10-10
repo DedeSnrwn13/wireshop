@@ -5,7 +5,20 @@
                 <div class="card-header">Products</div>
 
                 <div class="card-body">
-                    <table class="table">
+                    <div class="row">
+                        <div class="col">
+                            <select wire:model="paginate" name="" id="" class="form-control form-control-sm w-auto">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <table class="table mt-4">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
