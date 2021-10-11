@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
-    
+
     protected $paginationTheme = 'bootstrap';
 
     public $paginate = 10;
@@ -23,7 +23,8 @@ class Index extends Component
 
     protected $listeners = [
         'formClose' => 'formCloseHandler',
-        'productStored' => 'productStoredHandler'
+        'productStored' => 'productStoredHandler',
+        'productUpdate' => 'productUpdateHandler'
     ];
 
     public function mount()
@@ -35,21 +36,20 @@ class Index extends Component
     {
         return view('livewire.product.index', [
             'products' => $this->search === null ?
-                Product::latest()->paginate($this->paginate) : 
+                Product::latest()->paginate($this->paginate) :
                 Product::latest()->where('title', 'like', '%' . $this->search . '%')
                 ->paginate($this->paginate),
         ]);
     }
 
-    public function formCloseHandler() 
+    public function formCloseHandler()
     {
         $this->formVisible = false;
     }
 
-    public function productStoredHandler() 
+    public function productStoredHandler()
     {
         $this->formVisible = false;
-
         session()->flash('message', 'Your product was created');
     }
 
@@ -60,5 +60,11 @@ class Index extends Component
 
         $product = Product::find($productId);
         $this->emit('editProduct', $product);
+    }
+
+    public function productUpdateHandler()
+    {
+        $this->formVisible = false;
+        session()->flash('message', 'Your product was updated');
     }
 }
