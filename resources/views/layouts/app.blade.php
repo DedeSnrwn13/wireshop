@@ -84,7 +84,6 @@
         </main>
     </div>
 
-    <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientkey') }}"></script>
     @livewireScripts
 </body>

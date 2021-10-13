@@ -57,31 +57,31 @@ class Checkout extends Component
             'phone' => $this->phone,
             'address' => $this->address,
             'city' => $this->city,
-            'postal_code' => $this->postal_code,
+            'postal_code' => $this->postal_code
         ];
 
         $transactionDetails = [
             'order_id' => uniqid(),
-            'gross_amount' => $amount,
+            'gross_amount' => $amount
         ];
 
         $payload = [
             'transaction_details' => $transactionDetails,
-            'customer_details' => $customerDetails,
+            'customer_details' => $customerDetails
         ];
 
         $this->formCheckout = false;
 
         // Set your Merchant Server Key
-        Config::$serverKey = config('services.midtrans.serverKey');
+        \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        Config::$isProduction = config('services.midtrans.isProduction');
+        \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
         // Set sanitization on (default)
-        Config::$isSanitized = config('services.midtrans.isSanitized');
+        \Midtrans\Config::$isSanitized = config('services.midtrans.isSanitized');
         // Set 3DS transaction for credit card to true
-        Config::$is3ds = config('services.midtrans.is3ds');
+        \Midtrans\Config::$is3ds = config('services.midtrans.is3ds');
 
-        $snapToken = Snap::getSnapToken($payload);
+        $snapToken = \Midtrans\Snap::getSnapToken($payload);
 
         $this->snapToken = $snapToken;
     }
